@@ -1,57 +1,32 @@
 import React from "react";
 import { TileTypes } from "./enums";
+import { TileData } from "./interfaces";
 
 interface TileProps {
-	x: number;
-	y: number;
-	isMouseDown: boolean;
-	selectedTileType: TileTypes;
+	tileData: TileData;
 }
 
 interface TileState {
-	type: TileTypes;
+	temp: number;
 }
 
 class Tile extends React.Component<TileProps, TileState> {
 	constructor(props: TileProps) {
 		super(props);
-		this.state = { type: TileTypes.Empty };
+		this.state = { temp: 0 };
 	}
 
 	render(): React.ReactNode {
 		const tileColor = this.tileColor();
 		return (
-			<div
-				className={`w-[100px] h-[100px] ${tileColor} outline`}
-				onMouseOver={(e) => this.mouseOver(e)}
-				onClick={(e) => this.updateTileState(e)}
-			>
+			<div className={`w-[100px] h-[100px] ${tileColor} outline`}>
 				{/* This is a tile. X: {this.props.x + 1} Y: {this.props.y + 1} */}
 			</div>
 		);
 	}
 
-	// Allows for users to "drag" walls/other objects.
-	mouseOver = (e: React.MouseEvent) => {
-		if (!this.props.isMouseDown) {
-			return;
-		}
-
-		this.updateTileState(e);
-	};
-
-	updateTileState = (e: React.MouseEvent) => {
-		if (this.state.type === this.props.selectedTileType) {
-			return;
-		}
-
-		this.setState((prevState) => ({
-			type: this.props.selectedTileType,
-		}));
-	};
-
 	tileColor = () => {
-		switch (this.state.type) {
+		switch (this.props.tileData.type) {
 			case TileTypes.Empty:
 				return "bg-empty";
 			case TileTypes.Wall:

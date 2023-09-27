@@ -11,5 +11,5 @@ module.exports = {
 			unknown: "#f0f0f0",
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/forms")],
 };
