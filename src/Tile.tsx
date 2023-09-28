@@ -6,20 +6,18 @@ interface TileProps {
 	tileData: TileData;
 }
 
-interface TileState {
-	temp: number;
-}
+interface TileState {}
 
 class Tile extends React.Component<TileProps, TileState> {
 	constructor(props: TileProps) {
 		super(props);
-		this.state = { temp: 0 };
+		// this.state = { temp: 0 };
 	}
 
 	render(): React.ReactNode {
 		const tileColor = this.tileColor();
 		return (
-			<div className={`w-[100px] h-[100px] ${tileColor} outline`}>
+			<div className={`w-[100px] h-[100px] ${tileColor} outline select-none`}>
 				{/* This is a tile. X: {this.props.x + 1} Y: {this.props.y + 1} */}
 			</div>
 		);

@@ -131,13 +131,13 @@ class Grid extends React.Component<GridProps, GridState> {
 
 		newTiles[y][x].type = this.props.selectedTileType;
 
-		this.setState((prevState) => ({
-			tiles: newTiles,
-		}));
+		this.setGridState(newTiles);
 	};
 
-	tileStateSetEnd = (x: number, y: number) => {
-		console.log(`End Set for x:${x} y:${y}`);
+	setGridState = (tiles: Array<Array<TileData>>) => {
+		this.setState((prevState) => ({
+			tiles: tiles,
+		}));
 	};
 }
 
